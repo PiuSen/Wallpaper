@@ -110,7 +110,7 @@ class _ImageViewState extends State<ImageView> {
     );
   }
   _save() async {
-    if(Platform.isIOS){
+    if(Platform.isAndroid){
     //  await _askPermission();
     }
 
