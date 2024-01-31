@@ -6,7 +6,7 @@ import 'dart:ui';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 class ImageView extends StatefulWidget {
   late final String imageUrl;
 
@@ -73,22 +73,18 @@ class _ImageViewState extends State<ImageView> {
 
                             )
                         ),
-                        child:  SingleChildScrollView(
-                          physics: NeverScrollableScrollPhysics(),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
 
                             children: [
-                              Text("Set Wallpaper",style: TextStyle(fontSize: 14,color: Colors.white),),
-                              SizedBox(height: 5,),
 
-                              Text("Image will be save in gallery",style: TextStyle(
-                                  fontSize: 12,color: Colors.white
+                              Text("SAVE",style: TextStyle(
+                                  fontSize: 16,color: Colors.white
                               ),)
 
                             ],
                           ),
-                        ),
+
                       ),
                     ],
                   ),
@@ -120,6 +116,17 @@ class _ImageViewState extends State<ImageView> {
     await ImageGallerySaver.saveImage(Uint8List.fromList(response.data));
     print(result);
     Navigator.pop(context);
+    Fluttertoast.showToast(
+        msg: "Saved in gallery",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.blueAccent,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
+
+
   }
 
   // _askPermission() async {
